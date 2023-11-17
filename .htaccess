@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /FontysBezorgt/
+    RewriteRule ^(admin)($|/) - [L]
+
+    RewriteRule \.css$ - [L]
+    RewriteRule \.png$ - [L]
+    RewriteRule \.jpg$ - [L]
+    RewriteRule \.js$ - [L]
+    RewriteRule \.ttf$ - [L]
+
+    RewriteRule ^ index.php [L]
+</IfModule>
