@@ -1,0 +1,298 @@
+body {
+  background-color: #f2f2f2;
+  color: #f2f2f2;
+}
+
+footer{
+  position: relative;
+}
+
+
+.achtergrond-balk {
+  position: absolute; /* Verander naar absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  transform-origin: top left;
+  transform: skewY(-10deg);
+  background: #673266;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 998;
+}
+.voorste-balk {
+  position: absolute; /* Verander naar absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 90vh;
+  transform-origin: top left;
+  transform: skewY(-10deg);
+  background: #750073;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 997;
+}
+.achtergrond-balk-foot {
+  position: absolute; /* Verander naar absolute */
+  bottom: 1;
+  left: 0;
+  width: 100%;
+  height: 300px; /* Aanpassen naar gewenste hoogte */
+  transform-origin: top left;
+  transform: skewY(-10deg); /* Schuine vorm */
+  background: #673266;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 998;
+}
+.voorste-balk-foot {
+  position: absolute; /* Verander naar absolute */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px; /* Aanpassen naar gewenste hoogte */
+  transform-origin: top left;
+  transform: skewY(-10deg); /* Schuine vorm */
+  background: #750073;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 997;
+}
+.voorste-balk-foot1 {
+  position: absolute; /* Verander naar absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 53vh;
+  transform-origin: top left;
+  transform: skewY(-10deg);
+  background: #750073;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 997;
+}
+
+.achtergrond-balk-bezorg{
+  position: absolute; /* Verander naar absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+  background: #673266;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 998;
+}
+.voorste-balk-bezorg{
+  position: absolute; /* Verander naar absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 65vh;
+  transform-origin: top left;
+  background: #750073;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 997;
+}
+
+
+
+.titel {
+  transform: skewY(10deg);
+  margin-top: 18%;
+  margin-left: 35%;
+  position: absolute;
+  display: flex;
+  width: 772px;
+  height: 148px;
+  flex-shrink: 0;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 60px;
+  font-weight: 700;
+}
+.titel-bezorg {
+  margin-top: 10%;
+  margin-left: 35%;
+  position: absolute;
+  display: flex;
+  width: 772px;
+  height: 148px;
+  flex-shrink: 0;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.inhoud{
+  transform: skewY(10deg);
+  margin-left: 30%;
+  margin-top: 8%;  
+}
+
+.knop-bezorgen{
+    box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.5);
+    background-color:#fff;
+    border-radius:15px;
+    border:4px solid #673266;
+    display:inline-block;
+    cursor:pointer;
+    color: black;
+    font-size:19px;
+    font-weight: 600;
+    padding:21px 66px;
+    text-decoration:none;
+}
+.knop-bezorgen:hover {
+  background-color: #750073;
+  color: #fff;
+}
+.knop-bezorgen:active {
+  position:relative;
+  top:1px;
+}
+
+.knop-menu{
+  margin-left: 15%;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.5);
+  background-color: #673266;
+  border-radius:15px;
+  border:4px solid #fff;
+  display:inline-block;
+  cursor:pointer;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 600;
+  padding:21px 76px;
+  text-decoration:none;
+}
+.knop-menu:hover{
+  background-color: #750073;
+  color: #fff;
+}
+.knop-menu:active{
+  position:relative;
+  top:1px;
+}
+
+
+.nav-pills .nav-item {
+  margin-left: 11%;
+  color: #f2f2f2;
+}
+
+.link{
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+}
+.link:hover{
+  color: grey;
+}
+
+
+
+.logo{
+  padding: 5%;
+  transform: skewY(10deg);
+}
+.logo-bezorg{
+  padding: 2.6% 4.8%;
+}
+
+.buttons{
+  z-index: 999;
+}
+
+.stappen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+.stap {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  margin-left: 150px;
+}
+
+.stap-inhoud {
+  display: flex;
+  align-items: center;
+  position: relative; /* Toegevoegd voor positionering van de afbeelding */
+}
+
+.stap-inhoud svg {
+  margin-right: 20px; /* Ruimte tussen cirkel en tekst */
+}
+
+.stap h2 {
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+}
+
+.stap p {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: 40%;
+}
+
+.stap img {   
+  z-index: 2; /* Zorgt ervoor dat de afbeelding voor andere elementen komt te staan */
+}
+
+.icoon-zoek {
+  margin-left: 98%;
+}
+
+.icoon-locatie {
+  position: absolute;
+  z-index: 1; /* Zorgt ervoor dat de locatieafbeelding boven de achtergrond staat */
+  top: 55px; /* Hiermee wordt de afbeelding boven de balk verplaatst */
+  left: 50%; /* Stelt de horizontale positie in */
+  transform: translateX(-60%); /* Centreert de afbeelding horizontaal */
+}
+
+.icoon-brood{
+  position: absolute;
+  margin-top: 65%;
+  margin-left: 10%;
+}
+
+.icoon-beker{
+  position: absolute;
+  margin-top: 50%;
+  margin-left: 45%;
+}
+
+.icoon-robot{
+  position: absolute;
+  margin-top: 50%;
+  margin-left: 25%;
+}
+
+.v-zoekbalk {
+  position: absolute;
+  margin-top: 10%;
+  width: 317.057px;
+  height: 61.424px;
+  flex-shrink: 0;
+  border-radius: 23px;
+  background: #673266;
+  margin-left: 5%;
+}
+
+.wit-stuk {
+  width: 260px;
+  height: 55px;
+  border-radius: 23px;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-58%, -50%);
+  margin-left: 50%;
+  margin-top: 9.5%;
+}
+
+
+
