@@ -28,7 +28,7 @@
             <h1 class="titel">Fontys Bezorgt</h1>
             <img class="logo" src="./images/logo.png">
             <div class="inhoud">
-                <a class="knop-bezorgen" href="bezorg">Bezorgen</a>
+                <a class="knop-bezorgen" href="locatie">Bezorgen</a>
                 <a class="knop-menu" href="menu">Contact</a>
             </div>  
       </div>
