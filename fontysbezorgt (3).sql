@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 17 nov 2023 om 15:42
+-- Gegenereerd op: 19 nov 2023 om 12:38
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -31,15 +31,10 @@ CREATE TABLE `bestelling` (
   `Bestelnr` int(11) NOT NULL,
   `Klant_Studentnummer` int(11) NOT NULL,
   `Gebouw_Gebouwnaam` varchar(10) NOT NULL,
+  `Lokaal_Lokaal` varchar(11) NOT NULL,
+  `Tafel_Tafelnummer` int(11) NOT NULL,
   `robot_robotnr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `bestelling`
---
-
-INSERT INTO `bestelling` (`Bestelnr`, `Klant_Studentnummer`, `Gebouw_Gebouwnaam`, `robot_robotnr`) VALUES
-(1, 502539, '8', 1);
 
 -- --------------------------------------------------------
 
@@ -51,13 +46,6 @@ CREATE TABLE `categorie` (
   `Categorie` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `categorie`
---
-
-INSERT INTO `categorie` (`Categorie`) VALUES
-('Broodjes');
-
 -- --------------------------------------------------------
 
 --
@@ -65,16 +53,16 @@ INSERT INTO `categorie` (`Categorie`) VALUES
 --
 
 CREATE TABLE `gebouw` (
-  `Gebouwnaam` varchar(10) NOT NULL,
-  `lokaalnr` varchar(45) NOT NULL
+  `Gebouwnaam` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `gebouw`
 --
 
-INSERT INTO `gebouw` (`Gebouwnaam`, `lokaalnr`) VALUES
-('8', '1.41');
+INSERT INTO `gebouw` (`Gebouwnaam`) VALUES
+('p1'),
+('p2');
 
 -- --------------------------------------------------------
 
@@ -87,13 +75,6 @@ CREATE TABLE `klant` (
   `Naam` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `klant`
---
-
-INSERT INTO `klant` (`Studentnummer`, `Naam`) VALUES
-(502539, 'Sven van Schie');
-
 -- --------------------------------------------------------
 
 --
@@ -101,16 +82,16 @@ INSERT INTO `klant` (`Studentnummer`, `Naam`) VALUES
 --
 
 CREATE TABLE `lokaal` (
-  `Lokaal` decimal(4,2) NOT NULL,
-  `Gebouw_Gebouwnaam` varchar(10) NOT NULL
+  `Lokaal` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `lokaal`
 --
 
-INSERT INTO `lokaal` (`Lokaal`, `Gebouw_Gebouwnaam`) VALUES
-(1.41, '8');
+INSERT INTO `lokaal` (`Lokaal`) VALUES
+('1.1'),
+('1.2');
 
 -- --------------------------------------------------------
 
@@ -126,13 +107,6 @@ CREATE TABLE `product` (
   `Bestelling_Bestelnr` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `product`
---
-
-INSERT INTO `product` (`Product`, `Prijs`, `Omschrijving`, `Categorie_Categorie`, `Bestelling_Bestelnr`) VALUES
-('Broodje bal', 2.00, 'Broodje bal', 'Broodjes', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -143,13 +117,6 @@ CREATE TABLE `robot` (
   `robotnr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `robot`
---
-
-INSERT INTO `robot` (`robotnr`) VALUES
-(1);
-
 -- --------------------------------------------------------
 
 --
@@ -157,17 +124,16 @@ INSERT INTO `robot` (`robotnr`) VALUES
 --
 
 CREATE TABLE `tafel` (
-  `id` int(11) NOT NULL,
-  `Tafelcol` varchar(45) NOT NULL,
-  `Lokaal_Lokaal` decimal(4,2) NOT NULL
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tafel`
 --
 
-INSERT INTO `tafel` (`id`, `Tafelcol`, `Lokaal_Lokaal`) VALUES
-(6, '1.41', 1.41);
+INSERT INTO `tafel` (`id`) VALUES
+(1),
+(2);
 
 -- --------------------------------------------------------
 
@@ -202,7 +168,9 @@ ALTER TABLE `bestelling`
   ADD PRIMARY KEY (`Bestelnr`,`Klant_Studentnummer`),
   ADD KEY `fk_Bestelling_Klant1_idx` (`Klant_Studentnummer`),
   ADD KEY `fk_Bestelling_Gebouw1_idx` (`Gebouw_Gebouwnaam`),
-  ADD KEY `fk_Bestelling_robot1_idx` (`robot_robotnr`);
+  ADD KEY `fk_Bestelling_robot1_idx` (`robot_robotnr`),
+  ADD KEY `fk_Bestelling_Lokaal1_idx` (`Lokaal_Lokaal`),
+  ADD KEY `fk_Bestelling_Tafel1_idx` (`Tafel_Tafelnummer`);
 
 --
 -- Indexen voor tabel `categorie`
@@ -226,8 +194,7 @@ ALTER TABLE `klant`
 -- Indexen voor tabel `lokaal`
 --
 ALTER TABLE `lokaal`
-  ADD PRIMARY KEY (`Lokaal`),
-  ADD KEY `fk_Lokaal_Gebouw1_idx` (`Gebouw_Gebouwnaam`);
+  ADD PRIMARY KEY (`Lokaal`);
 
 --
 -- Indexen voor tabel `product`
@@ -247,8 +214,7 @@ ALTER TABLE `robot`
 -- Indexen voor tabel `tafel`
 --
 ALTER TABLE `tafel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Tafel_Lokaal1_idx` (`Lokaal_Lokaal`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -286,15 +252,11 @@ ALTER TABLE `tafel`
 -- Beperkingen voor tabel `bestelling`
 --
 ALTER TABLE `bestelling`
+  ADD CONSTRAINT `bestelling_ibfk_1` FOREIGN KEY (`Lokaal_Lokaal`) REFERENCES `lokaal` (`Lokaal`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `bestelling_ibfk_2` FOREIGN KEY (`Tafel_Tafelnummer`) REFERENCES `tafel` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bestelling_Gebouw1` FOREIGN KEY (`Gebouw_Gebouwnaam`) REFERENCES `gebouw` (`Gebouwnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bestelling_Klant1` FOREIGN KEY (`Klant_Studentnummer`) REFERENCES `klant` (`Studentnummer`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bestelling_robot1` FOREIGN KEY (`robot_robotnr`) REFERENCES `robot` (`robotnr`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Beperkingen voor tabel `lokaal`
---
-ALTER TABLE `lokaal`
-  ADD CONSTRAINT `fk_Lokaal_Gebouw1` FOREIGN KEY (`Gebouw_Gebouwnaam`) REFERENCES `gebouw` (`Gebouwnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Beperkingen voor tabel `product`
@@ -302,12 +264,6 @@ ALTER TABLE `lokaal`
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_Product_Bestelling1` FOREIGN KEY (`Bestelling_Bestelnr`) REFERENCES `bestelling` (`Bestelnr`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Product_Categorie` FOREIGN KEY (`Categorie_Categorie`) REFERENCES `categorie` (`Categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Beperkingen voor tabel `tafel`
---
-ALTER TABLE `tafel`
-  ADD CONSTRAINT `fk_Tafel_Lokaal1` FOREIGN KEY (`Lokaal_Lokaal`) REFERENCES `lokaal` (`Lokaal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

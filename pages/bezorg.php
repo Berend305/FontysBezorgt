@@ -1,3 +1,6 @@
+<?php
+
+?>
 <main style="margin-top: 40%;">
     <section id="broodjes">
         <h2 style="color: black; margin-left: 46%;">Broodjes</h2>
