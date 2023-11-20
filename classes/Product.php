@@ -3,19 +3,15 @@
 class Product
 {
     public function __construct(
-        private int $product_id,
-        private string $name,
+        private int $product,
         private string $price,
         private string $description,
         private string $category,
+        private string $order,
     ){}
-    public function getId(): int
+    public function getProduct(): int
     {
-        return $this->product_id;
-    }
-    public function getName(): string
-    {
-        return $this->name;
+        return $this->product;
     }
     public function getPrice(): string
     {
@@ -29,38 +25,42 @@ class Product
     {
         return $this->category;
     }
+    public function getOrder(): string
+    {
+        return $this->order;
+    }
 
     public static function selectBroodjes()
     {
-        $sth = DBConn::PDO()->prepare("SELECT name, price, description FROM product WHERE category = 'broodjes'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'broodjes'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectDrankjes()
     {
-        $sth = DBConn::PDO()->prepare("SELECT name, description FROM product WHERE category = 'drankjes'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'drankjes'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectFruit()
     {
-        $sth = DBConn::PDO()->prepare("SELECT name, description FROM product WHERE category = 'fruit'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'fruit'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectSnacks()
     {
-        $sth = DBConn::PDO()->prepare("SELECT name, description FROM product WHERE category = 'snacks'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'snacks'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectSnoep()
     {
-        $sth = DBConn::PDO()->prepare("SELECT name, description FROM product WHERE category = 'snoep'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'snoep'");
         $sth->execute();
 
         return $sth->fetchAll();

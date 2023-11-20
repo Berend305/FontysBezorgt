@@ -29,22 +29,18 @@ class Bestelling
         return $this->tafel;
     }
     // In de Bestelling klasse
-    public static function insertIntoBestelling($studentnummer, $gebouw, $lokaal, $tafel)
+    public static function insertIntoBestelling($studentnummer, $gebouw, $lokaal, $tafel, $robot)
     {
         $params = array(
             ":studentnummer" => $studentnummer,
             ":gebouw" => $gebouw,
             ":lokaal" => $lokaal,
-            ":tafel" => $tafel
+            ":tafel" => $tafel,
+            ":robotnr" => $robot,
         );
-
-        try {
-            $sth = DBConn::PDO()->prepare("INSERT INTO bestelling (Klant_Studentnummer, Gebouw_Gebouwnaam, Lokaal_Lokaal, Tafel_Tafelnummer) VALUES (:studentnummer, :gebouw, :lokaal, :tafel)");
+            $sth = DBConn::PDO()->prepare("INSERT INTO bestelling (Klant_Studentnummer, Gebouw_Gebouwnaam, Lokaal_Lokaal, Tafel_Tafelnummer, robot_robotnr) VALUES (:studentnummer, :gebouw, :lokaal, :tafel, :robotnr)");
             $sth->execute($params);
-            echo "Gegevens succesvol ingevoerd in de database!";
-        } catch (PDOException $e) {
-            echo "Fout bij het invoeren van gegevens: " . $e->getMessage();
-        }
+    
     }
 
 }

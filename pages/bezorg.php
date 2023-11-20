@@ -1,14 +1,25 @@
-<?php
+<?php  
+if (isset($_SESSION['studentnummer'])) {
+    $studentnummer = $_SESSION['studentnummer'];
+
+    echo "Studentnummer: " . $studentnummer;
+
+    // unset($_SESSION['studentnummer']); // variabele verwijderen
+    // session_destroy(); //sessievariabelen vernietigen
+} else {
+    echo "Geen studentnummer gevonden in de sessie";
+}
 
 ?>
 <main style="margin-top: 40%;">
-    <section id="broodjes">
+<form action="" method="post">
+<section id="broodjes">
         <h2 style="color: black; margin-left: 46%;">Broodjes</h2>
         <?php $broodjes = Product::selectBroodjes(); foreach ($broodjes as $broodje) : ?>
                 <div class="broodje" style="color: black;">
-                    <h3><?php echo $broodje['name']; ?></h3>
-                    <p><?php echo $broodje['price']; ?></p>
-                    <p><?php echo $broodje['description']; ?></p>
+                    <h3><?php echo $broodje['omschrijving']; ?></h3>
+                    <p><?php echo $broodje['prijs']; ?></p>
+                    <input type="number" name="aantal">
                 </div>
             <?php endforeach; ?>
     </section>
@@ -16,9 +27,9 @@
         <h2 style="color: black; margin-left: 46%;">Drankjes</h2>
         <?php $drankjes = Product::selectDrankjes(); foreach ($drankjes as $drankje) : ?>
                 <div class="drankje" style="color: black;">
-                    <h3><?php echo $drankje['name']; ?></h3>
-                    <p><?php echo $drankje['price']; ?></p>
-                    <p><?php echo $drankje['description']; ?></p>
+                <h3><?php echo $drankje['omschrijving']; ?></h3>
+                    <p><?php echo $drankje['prijs']; ?></p>
+                    <input type="number" name="aantal">
                 </div>
             <?php endforeach; ?>
     </section>
@@ -26,9 +37,9 @@
         <h2 style="color: black; margin-left: 47%;">Fruit</h2>
         <?php $fruiten = Product::selectFruit(); foreach ($fruiten as $fruit) : ?>
                 <div class="fruit" style="color: black;">
-                    <h3><?php echo $fruit['name']; ?></h3>
-                    <p><?php echo $fruit['price']; ?></p>
-                    <p><?php echo $fruit['description']; ?></p>
+                <h3><?php echo $fruit['omschrijving']; ?></h3>
+                    <p><?php echo $fruit['prijs']; ?></p>
+                    <input type="number" name="aantal">
                 </div>
             <?php endforeach; ?>
     </section>
@@ -36,9 +47,9 @@
         <h2 style="color: black; margin-left: 46%;">Snacks</h2>
         <?php $snacks = Product::selectSnacks(); foreach ($snacks as $snack) : ?>
                 <div class="broodje" style="color: black;">
-                    <h3><?php echo $snack['name']; ?></h3>
-                    <p><?php echo $snack['price']; ?></p>
-                    <p><?php echo $snack['description']; ?></p>
+                <h3><?php echo $snack['omschrijving']; ?></h3>
+                    <p><?php echo $snack['prijs']; ?></p>
+                    <input type="number" name="aantal">
                 </div>
             <?php endforeach; ?>
     </section>
@@ -46,11 +57,13 @@
         <h2 style="color: black; margin-left: 46%;">Snoep</h2>
         <?php $snoepjes = Product::selectSnoep(); foreach ($snoepjes as $snoep) : ?>
                 <div class="broodje" style="color: black;">
-                    <h3><?php echo $snoep['name']; ?></h3>
-                    <p><?php echo $snoep['price']; ?></p>
-                    <p><?php echo $snoep['description']; ?></p>
+                <h3><?php echo $snoep['omschrijving']; ?></h3>
+                    <p><?php echo $snoep['prijs']; ?></p>
+                    <input type="number" name="aantal">
                 </div>
             <?php endforeach; ?>
     </section>
+    <input type="submit" name="submit" value="Toevoegen aan winkelwagen">
+</form>
 </main>
 

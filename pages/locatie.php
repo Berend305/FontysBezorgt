@@ -2,39 +2,29 @@
 session_start();
 
 // Controleer of het formulier is ingediend
-if (isset($_POST["Bevestig"])) {
+if (!empty($_POST["Bevestig"])) {
+
     // Haal de ingediende gegevens op
     $studentnummer = $_POST["Studentnummer"];
     $gebouw = $_POST["gebouw"];
     $lokaal = $_POST["lokaal"];
     $tafel = $_POST["tafel"];
+    $robot = random_int(0,20);
+    // ... andere gegevens ophalen
 
-    // Sla de gegevens op in de sessie voor gebruik op de afrekenpagina
-    $_SESSION["Bestelling"] = [
-        "Studentnummer" => $studentnummer,
-        "Gebouw" => $gebouw,
-        "Lokaal" => $lokaal,
-        "Tafel" => $tafel
-    ];
+    // Sla het studentnummer op in de sessievariabele
+    Bestelling::insertIntoBestelling($studentnummer, $gebouw, $lokaal, $tafel, $robot);
+    $_SESSION['studentnummer'] = $studentnummer;
 
-    // Doorsturen naar bezorg.php om de bestelling in de database te plaatsen
+    // Doorsturen naar de bezorgpagina
     header("Location: bezorg");
-    exit();
+    exit;
 }
-if (isset($_SESSION["Bestelling"]) && isset($_POST["Bevestig"])) {
-    $studentnummer = $_SESSION["Bestelling"]["Studentnummer"];
-    $gebouw = $_SESSION["Bestelling"]["Gebouw"];
-    $lokaal = $_SESSION["Bestelling"]["Lokaal"];
-    $tafel = $_SESSION["Bestelling"]["Tafel"];
 
-    Bestelling::insertIntoBestelling($studentnummer, $gebouw, $lokaal, $tafel);
-    
-    unset($_SESSION["Bestelling"]); // Optioneel, vernietig de sessie na invoeren
-}
 ?>
 
 <main style="margin-top: 50%; margin-bottom: 50%;">
-    <form action="" method="post">
+    <form method="post">
         <input type="number" name="Studentnummer">
         <select name="gebouw" id="gebouw">
             <?php foreach (Gebouw::selectGebouwList() as $gebouw) : ?>

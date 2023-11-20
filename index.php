@@ -12,6 +12,7 @@ require_once("classes/Customer.php");
 require_once("classes/Gebouw.php");
 require_once("classes/Lokaal.php");
 require_once("classes/Tafel.php");
+require_once("classes/Bestelling.php");
 
 // session_start wordt zo opgeroepen over de gehele website
 session_start();
