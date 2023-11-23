@@ -9,7 +9,6 @@ if (isset($_SESSION['studentnummer'])) {
 } else {
     echo "Geen studentnummer gevonden in de sessie";
 }
-
 ?>
 <main style="margin-top: 40%;">
 <form action="" method="post">

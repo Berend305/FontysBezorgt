@@ -39,31 +39,39 @@ class Product
     }
     public static function selectDrankjes()
     {
-        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'drankjes'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE Bestelling_Bestelnr IS NULL AND categorie = 'drankjes'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectFruit()
     {
-        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'fruit'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE Bestelling_Bestelnr IS NULL AND categorie = 'fruit'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectSnacks()
     {
-        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'snacks'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE Bestelling_Bestelnr IS NULL AND categorie = 'snacks'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
     public static function selectSnoep()
     {
-        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE categorie = 'snoep'");
+        $sth = DBConn::PDO()->prepare("SELECT prijs, omschrijving FROM product WHERE Bestelling_Bestelnr IS NULL AND categorie = 'snoep'");
         $sth->execute();
 
         return $sth->fetchAll();
     }
+
+    // public static function insertIntoProduct()
+    // {
+    //     $params = array(
+
+    //     );
+    //     $sth = DBConn::PDO()->prepare("")
+    // }
 }
 ?>
